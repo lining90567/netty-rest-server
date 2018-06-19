@@ -6,20 +6,34 @@ netty-rest-server是基于Netty开发的高性能RESTful框架，提供控制器
 
 ## 主要注解
 注解名称参考了Spring MVC，编译理解和记忆
-@RestController
-@RequestMapping
-@GetMapping
-@PostMapping
-@DeleteMapping
-@PutMapping
-@PatchMapping
-@JsonResponse
-@RequestParam
-@PathVariable
-@RequestBody
-@UploadFile
-@UrlEncodedForm
-@RequestHeader
+
+-@RestController
+
+-@RequestMapping
+
+-@GetMapping
+
+-@PostMapping
+
+-@DeleteMapping
+
+-@PutMapping
+
+-@PatchMapping
+
+-@JsonResponse
+
+-@RequestParam
+
+-@PathVariable
+
+-@RequestBody
+
+-@UploadFile
+
+-@UrlEncodedForm
+
+-@RequestHeader
 
 ## 实例代码
 src/test/java
