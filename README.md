@@ -67,7 +67,7 @@ public class UserController {
 }
 ```
 
-## 拦截器示例：
+## 拦截器示例：跨域控制器
 ```java
 public final class CorsInterceptor implements Interceptor {
 
@@ -124,6 +124,9 @@ public void test() {
     }  
 }  
 ```
+
+## 访问服务
+http://localhost:2006/users
 
 ## 测试代码
 src/test/java
