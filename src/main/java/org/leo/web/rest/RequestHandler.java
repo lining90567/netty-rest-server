@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.leo.web.core.WebServer;
 import org.leo.web.exception.HandleRequestException;
 import org.leo.web.exception.ResourceNotFoundException;
@@ -51,6 +53,10 @@ import io.netty.util.CharsetUtil;
  */
 final class RequestHandler {
 
+
+    private static final ObjectMapper jsonConverter = new ObjectMapper(); // added by jacob
+    private static final XmlMapper xmlConverter = new XmlMapper(); // added by jacob
+
     /**
      * 处理请求
      * 
@@ -86,7 +92,21 @@ final class RequestHandler {
                 paramValues[i] = requestInfo.getResponse();
                 break;                
             case REQUEST_BODY:
-                paramValues[i] = requestInfo.getBody();
+                if (requestInfo.getIsJson()) {
+                    try {
+                        paramValues[i] = jsonConverter.readValue(requestInfo.getBody(), cmp.getDataType());
+                    } catch (IOException e) {
+                        throw new HandleRequestException(e);
+                    }
+                } else if (requestInfo.getIsXml()) {
+                    try {
+                        paramValues[i] = xmlConverter.readValue(requestInfo.getBody(), cmp.getDataType());
+                    } catch (IOException e) {
+                        throw new HandleRequestException(e);
+                    }
+                } else {
+                    paramValues[i] = requestInfo.getBody();
+                }
                 break;
             case REQUEST_PARAM:
                 paramValues[i] = requestInfo.getParameters().get(cmp.getName());

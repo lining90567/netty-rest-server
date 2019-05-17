@@ -45,13 +45,7 @@ public class UserController {
     }
     
     @PostMapping("")
-    public ResponseEntity<?> postMethod(@RequestBody String body) {
-        // 添加用户
-        JSONObject json = JSONObject.parseObject(body);
-        User user = new User();
-        user.setId(json.getIntValue("id"));
-        user.setName(json.getString("name"));
-        user.setAge(json.getShortValue("age"));
+    public ResponseEntity<?> postMethod(@RequestBody User user) {
         return ResponseEntity.status(HttpStatus.CREATED).build(user);
     }
 

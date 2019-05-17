@@ -30,7 +30,16 @@ public final class RequestInfo {
     private Map<String, String> formData = new HashMap<>();
     
     private List<MultipartFile> files = new ArrayList<>(8);
-    
+
+    private Boolean isJson;
+
+    private Boolean isXml;
+
+    public RequestInfo() {
+        this.isJson = false;
+        this.isXml = false;
+    }
+
     public FullHttpRequest getRequest() {
         return this.request;
     }
@@ -69,11 +78,34 @@ public final class RequestInfo {
         return files;
     }
 
+    public Boolean getIsJson() {
+        return isJson;
+    }
+
+    public void setIsJson(Boolean json) {
+        isJson = json;
+    }
+
+    public Boolean getIsXml() {
+        return isXml;
+    }
+
+    public void setIsXml(Boolean xml) {
+        isXml = xml;
+    }
+
     @Override
     public String toString() {
-        return "RequestInfo [request=" + request + ", response=" + response + ", parameters=" + parameters
-                + ", headers=" + headers + ", body=" + body + ", formData=" + formData + ", files=" + files
-                + "]";
+        return "RequestInfo{" +
+                "request=" + request +
+                ", response=" + response +
+                ", parameters=" + parameters +
+                ", headers=" + headers +
+                ", body='" + body + '\'' +
+                ", formData=" + formData +
+                ", files=" + files +
+                ", isJson=" + isJson +
+                ", isXml=" + isXml +
+                '}';
     }
-    
 }
