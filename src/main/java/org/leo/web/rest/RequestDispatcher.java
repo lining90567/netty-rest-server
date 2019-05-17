@@ -93,7 +93,11 @@ public final class RequestDispatcher {
                     switch (contentType.toLowerCase()) {
                     case "application/json":
                     case "application/json;charset=utf-8":
+                        requestInfo.setIsJson(true);
+                        requestInfo.setBody(request.content().toString(Charset.forName("UTF-8"))); // added by jacob
+                        break;  // added by jacob
                     case "text/xml":
+                        requestInfo.setIsXml(true);
                         requestInfo.setBody(request.content().toString(Charset.forName("UTF-8")));
                         break;
                     case "application/x-www-form-urlencoded":
