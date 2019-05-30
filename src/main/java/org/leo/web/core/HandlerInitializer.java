@@ -78,8 +78,8 @@ final class HandlerInitializer extends ChannelInitializer<SocketChannel> {
          */
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast("decoder", new HttpRequestDecoder());
-        pipeline.addLast("aggregator", new HttpObjectAggregator(maxContentLength));
         pipeline.addLast("encoder", new HttpResponseEncoder());
+        pipeline.addLast("aggregator", new HttpObjectAggregator(maxContentLength));
         // 启用gzip（由于使用本地存储文件，不能启用gzip）
         //pipeline.addLast(new HttpContentCompressor(1));
         pipeline.addLast(new ChunkedWriteHandler());
